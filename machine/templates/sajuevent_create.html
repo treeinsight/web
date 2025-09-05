@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}이벤트 등록{% endblock title %}
+
+
+{% block head_script %}
+
+    <script type="text/javascript">
+
+        function randomNum(min, max){
+            var randNum = Math.floor(Math.random()*(max-min+1)) + min;
+            return randNum;
+        }
+
+        function get_your_universe(){
+            return randomNum(2, 3);
+        }
+
+        function get_your_universe_change(){
+            return randomNum(1, 6);
+        }
+
+        function hyo_1_select_click() {
+            document.getElementById('hyo_1').value = get_your_universe();
+            document.getElementById('hyo_2_select').disabled = false;
+            document.getElementById('hyo_1_select').disabled = true;
+            //console.log( "hyo_1 버튼을 누르셨습니다.");
+            //alert( "hyo_1 버튼을 누르셨습니다.");
+        }
+
+        function hyo_2_select_click() {
+            document.getElementById('hyo_2').value = get_your_universe();
+            document.getElementById('hyo_3_select').disabled = false;
+            document.getElementById('hyo_2_select').disabled = true;
+        }
+
+        function hyo_3_select_click() {
+            document.getElementById('hyo_3').value = get_your_universe();
+            document.getElementById('hyo_4_select').disabled = false;
+            document.getElementById('hyo_3_select').disabled = true;
+        }
+
+        function hyo_4_select_click() {
+            document.getElementById('hyo_4').value = get_your_universe();
+            document.getElementById('hyo_5_select').disabled = false;
+            document.getElementById('hyo_4_select').disabled = true;
+        }
+
+        function hyo_5_select_click() {
+            document.getElementById('hyo_5').value = get_your_universe();
+            document.getElementById('hyo_6_select').disabled = false;
+            document.getElementById('hyo_5_select').disabled = true;
+        }
+
+        function hyo_6_select_click() {
+        document.getElementById('hyo_6').value = get_your_universe();
+        document.getElementById('hyo_7_select').disabled = false;
+        document.getElementById('hyo_6_select').disabled = true;
+        }
+
+        function hyo_7_select_click() {
+            document.getElementById('hyo_7').value = get_your_universe_change();
+            document.getElementById('hyo_7_select').disabled = true;
+            document.getElementById('btn_submit').disabled = false;
+        }
+
+    </script>
+
+{% endblock head_script %}
+
+
+{% block content %}
+
+	<!--Register-->
+	<div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-12">
+				<h3>이벤트 등록</h3>
+				<br><br><br>
+                <b>이벤트를 등록합니다. (*) 표시가 있는 항목은 반드시 입력해야 합니다.</b><br><br><br>
+
+				<form method="POST">
+
+					{% csrf_token %}
+					{% crispy form %}
+
+                    <br><hr>
+                    <input type="hidden" id="hyo_1" name="hyo1" value="">
+                    <input type="hidden" id="hyo_2" name="hyo2" value="">
+                    <input type="hidden" id="hyo_3" name="hyo3" value="">
+                    <input type="hidden" id="hyo_4" name="hyo4" value="">
+                    <input type="hidden" id="hyo_5" name="hyo5" value="">
+                    <input type="hidden" id="hyo_6" name="hyo6" value="">
+                    <input type="hidden" id="hyo_7" name="hyo7" value="">
+
+                    등록이 거의 끝났습니다.<br><br>
+
+                    이제 차분하게 명상하는 마음으로, 아래 버튼을 천천히 순서대로 누릅니다.<br>
+                    (모두 누르기 전에는 '등록하기' 버튼이 활성되지 않습니다)
+                    <br><br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col"><button class="btn btn-success btn-sm" id="hyo_1_select" onclick="hyo_1_select_click();">1</button></div>
+                                    <div class="col"><button class="btn btn-success btn-sm" id="hyo_2_select" disabled="disabled" onclick="hyo_2_select_click();">2</button></div>
+                                    <div class="col"><button class="btn btn-success btn-sm" id="hyo_3_select" disabled="disabled" onclick="hyo_3_select_click();">3</button></div>
+                                    <div class="col"><button class="btn btn-success btn-sm" id="hyo_4_select" disabled="disabled" onclick="hyo_4_select_click();">4</button></div>
+                                    <div class="col"><button class="btn btn-success btn-sm" id="hyo_5_select" disabled="disabled" onclick="hyo_5_select_click();">5</button></div>
+                                    <div class="col"><button class="btn btn-success btn-sm" id="hyo_6_select" disabled="disabled" onclick="hyo_6_select_click();">6</button></div>
+                                    <div class="col"><button class="btn btn-outline-success btn-sm" id="hyo_7_select" disabled="disabled" onclick="hyo_7_select_click();">7</button></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
+                    <hr><br><br>
+					<button class="btn btn-primary" type="submit" disabled="disabled" id="btn_submit">등록하기</button>
+				</form>
+				<br>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <p class="text-center">등록하지 않고 이벤트 목록으로 돌아가려면, <a href="/machine/list_event">여기</a>를 클릭하세요.</p>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}이벤트 내용{% endblock title %}
+
+{% block content %}
+
+	<!--Event Detail-->
+	<div class="container py-5">
+		<div class="row">
+            <div class="col-lg-12">
+				<h3>이벤트 내용</h3>
+				<br><br>
+                <hr>
+                제 목 : <b>{{ event.title }}</b>
+                <hr>
+                날 짜 : {{ event.eventyear|default_if_none:"   " }}/{{ event.eventmonth|default_if_none:"   " }}/{{ event.eventday|default_if_none:"   " }} ({{ event.eventtime|default_if_none:"   " }})
+                <br>
+                <hr>
+                사건 내용 :<br><br>
+                {{ event.eventmemo }}
+
+                <br>
+                <hr>
+                재물지수 : {{ event.wealthindex }} | 건강지수 : {{ event.healthindex }} | 직장지수 : {{ event.jobindex }} | 관계지수 : {{ event.relationindex }} |
+                학업지수 : {{ event.studyindex }} | 명예지수 : {{ event.honorindex }} | 이동지수 : {{ event.moveindex }} | 성과지수 : {{ event.outcomeindex }}
+
+                <br>
+                <hr>
+                괘 : {{ event.goe|default_if_none:"없음" }} | 동효 : {{ event.donghyo|default_if_none:"없음" }} |
+                괘(예상) : {{ event.goe_expected|default_if_none:"없음" }} | 동효(예상) : {{ event.donghyo_expected|default_if_none:"없음" }}
+
+                <br>
+                <hr>
+                길흉 내용 :<br><br>
+                {{ event.luckmemo }}
+
+                <br>
+                <hr>
+                참고할 내용 :<br><br>
+                {{ event.note }}
+
+				<br>
+                <hr>
+                참고할 사이트 : {{ event.url1|default_if_none:"없음" }}
+
+				<br>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br><br>
+                <p class="text-right"><a href="/machine/list_event">목록</a>으로 가기 |
+                     <a href="{% url 'machine:update' object.pk %}">수정</a>하기 |
+                    <a href="{% url 'machine:delete' object.pk %}">삭제</a>하기 </p>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}

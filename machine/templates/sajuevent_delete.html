@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}이벤트 삭제{% endblock title %}
+
+{% block content %}
+
+	<!--Delete-->
+	<div class="container py-5">
+        <div class="row">
+            <div class="col-lg-10">
+				<h3>이벤트 삭제</h3>
+				<br><br>
+				<form method="POST">
+					{% csrf_token %}
+					<p>이벤트가 삭제되면 복구할 수 없습니다.<br>정말로 삭제하겠습니까?</p>
+					<br>
+					<button class="btn btn-primary" type="submit">이벤트 삭제하기</button>
+				</form>
+			</div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <p class="text-center">삭제하지 않고 이벤트 목록으로 돌아가려면, <a href="/machine/list_event">여기</a>를 클릭하세요.<br>이벤트 상세보기로 돌아가려면, <a href="{% url 'machine:detail' object.pk %}">여기</a>를 클릭하세요.</p>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}
+

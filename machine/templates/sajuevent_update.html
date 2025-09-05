@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}이벤트 수정{% endblock title %}
+
+{% block content %}
+
+	<!--Update-->
+	<div class="container py-5">
+        <div class="row">
+            <div class="col-lg-12">
+				<h3>이벤트 수정</h3>
+				<br>
+				<form method="POST">
+					{% csrf_token %}
+					{% crispy form %}
+					<button class="btn btn-primary" type="submit">수정하기</button>
+				</form>
+				<br>
+            </div>
+<!--            <div class="col-lg-2"></div>-->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <p class="text-center">이벤트 목록으로 돌아가려면, <a href="/machine/list_event">여기</a>를 클릭하세요.<br>이벤트 상세보기로 돌아가려면, <a href="{% url 'machine:detail' object.pk %}">여기</a>를 클릭하세요.</p>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}
+
